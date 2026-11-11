@@ -200,7 +200,8 @@ p { margin: 0; }
   font-variant-numeric: tabular-nums; padding: 0;
 }
 .cal button.d { color: #fff8ee; border: 0; transition: transform .25s ease, box-shadow .25s ease; }
-.cal .d.p-jp { background: var(--shu); }
+.cal .d.p-tk { background: var(--shu); }
+.cal .d.p-ky { background: #8a6a30; }
 .cal .d.p-oki { background: var(--umi); }
 .cal .d.p-fly { background: var(--ai); }
 .cal .d .pl { position: absolute; top: 3px; right: 4px; width: 11px; height: 11px; fill: currentColor; opacity: .9; }
@@ -251,6 +252,10 @@ p { margin: 0; }
 .pass-route time { display: block; font-weight: 700; font-size: var(--fs-l); font-variant-numeric: tabular-nums; }
 .pass-route time sup { font-size: .65em; color: var(--shu); }
 .pass-route svg { width: 34px; height: 34px; fill: var(--shu); }
+.pass-route .dur { display: grid; justify-items: center; gap: 2px; }
+.pass-route .dur span { font-size: .74rem; font-weight: 700; color: var(--shu); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.trip-total { justify-self: center; padding-top: 12px; font-size: var(--fs-s); color: rgba(239,230,212,.8); }
+.trip-total b { color: var(--kinari); }
 .pass-stub {
   background: var(--shu); color: #fff4ea; display: grid; place-items: center; position: relative;
   border-left: 2px dashed rgba(239,230,212,.85);
@@ -468,9 +473,11 @@ p { margin: 0; }
 .tl-axis em { position: absolute; right: 0; top: -20px; font-style: normal; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--kin); }
 .tl-body { position: relative; display: grid; gap: 8px; padding: 30px 0 6px; }
 .win { position: absolute; top: 0; bottom: 0; border-radius: 8px; }
-.win span { position: absolute; top: 7px; left: 5px; font-size: .66rem; font-weight: 700; white-space: nowrap; }
+.win span { position: absolute; top: 7px; left: 3px; font-size: .66rem; font-weight: 700; white-space: nowrap; }
 .w-jp { background: rgba(204,74,45,.14); border: 1px dashed rgba(204,74,45,.65); }
 .w-jp span { color: #f29277; }
+.w-ky { background: rgba(201,163,95,.16); border: 1px dashed rgba(201,163,95,.6); }
+.w-ky span { color: var(--kin); }
 .w-oki { background: rgba(19,95,104,.28); border: 1px dashed rgba(120,200,200,.55); }
 .w-oki span { color: #8fd3cc; }
 .ev { position: relative; z-index: 1; background: rgba(18,19,23,.32); border: 1px solid rgba(239,230,212,.12); border-radius: 10px; }
@@ -489,6 +496,7 @@ p { margin: 0; }
 .st-before .ev-track i, .st-after .ev-track i { background: rgba(239,230,212,.38); }
 .ev-more { padding: 0 12px 14px; display: grid; gap: 6px; color: rgba(239,230,212,.86); font-size: var(--fs-s); max-width: 70ch; }
 .ev-more .ref { color: var(--kin); font-weight: 700; }
+.ev-more[hidden] { display: none; }
 
 /* ---------- okinawa da vedere ---------- */
 .sea { background-color: #0f4f58; background-image: var(--seigaiha, none); color: var(--kinari); }
@@ -677,7 +685,8 @@ p { margin: 0; }
         <div class="cal" id="cal" aria-label="Calendario di agosto 2027"></div>
         <ul class="legend">
           <li><i style="background:var(--ai)"></i>In volo</li>
-          <li><i style="background:var(--shu)"></i>Tokyo e Kyoto</li>
+          <li><i style="background:var(--shu)"></i>Tokyo</li>
+          <li><i style="background:#8a6a30"></i>Kyoto</li>
           <li><i style="background:var(--umi)"></i>Okinawa</li>
         </ul>
       </div>
@@ -699,7 +708,7 @@ p { margin: 0; }
     <div class="head" data-rv>
       <span class="k brush" aria-hidden="true">空</span>
       <div><p class="eyebrow">04 · Voli e bagagli</p><h2>I voli</h2></div>
-      <p class="lead">Andata via Taipei, volo interno per Okinawa, ritorno di nuovo via Taipei.</p>
+      <p class="lead">Andata via Taipei, volo interno da Osaka a Okinawa, ritorno di nuovo via Taipei. Le durate tengono già conto dei fusi orari.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Tratte">
       <button role="tab" id="tab-andata" aria-selected="true" aria-controls="pan-andata" data-g="andata">Andata<small>10 → 11 ago</small></button>
@@ -718,7 +727,7 @@ p { margin: 0; }
               <p class="pass-top"><span>Andata · 1 di 2</span><span>10 ago</span></p>
               <div class="pass-route">
                 <div><b>MXP</b><span>Milano</span><time>11:16</time></div>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>
+                <div class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg><span>12 h 49 min</span></div>
                 <div><b>TPE</b><span>Taipei</span><time>06:05 <sup>+1</sup></time></div>
               </div>
             </div>
@@ -730,26 +739,27 @@ p { margin: 0; }
               <p class="pass-top"><span>Andata · 2 di 2</span><span>11 ago</span></p>
               <div class="pass-route">
                 <div><b>TPE</b><span>Taipei</span><time>07:55</time></div>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>
+                <div class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg><span>3 h 30 min</span></div>
                 <div><b>NRT</b><span>Tokyo Narita</span><time>12:25</time></div>
               </div>
             </div>
             <div class="pass-stub"><span class="brush">搭乗券</span></div>
           </article>
+          <p class="trip-total">Da Milano a Tokyo, scalo compreso: <b>18 h 09 min</b></p>
         </div>
         <div role="tabpanel" id="pan-interno" aria-labelledby="tab-interno" class="passes" hidden>
           <article class="pass tbd">
             <div class="pass-main">
               <p class="pass-top"><span>Volo interno</span><span>19 ago</span></p>
               <div class="pass-route">
-                <div><b>···</b><span>Partenza da vedere</span><time>—</time></div>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>
+                <div><b>OSA</b><span>Osaka</span><time>—</time></div>
+                <div class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg><span>~2 h 10 min</span></div>
                 <div><b>OKA</b><span>Okinawa</span><time>—</time></div>
               </div>
             </div>
             <div class="pass-stub"><span class="brush">未定</span></div>
           </article>
-          <p class="note" style="padding-top:14px">Ancora da prenotare. L'ultima volta veniva circa <b>€70 + il costo della valigia</b>.</p>
+          <p class="note" style="padding-top:14px">Il 19 agosto da Osaka. Ancora da prenotare: l'ultima volta veniva circa <b>€70 + il costo della valigia</b>. La durata è la media dei voli diretti, l'orario lo sapremo col biglietto.</p>
         </div>
         <div role="tabpanel" id="pan-ritorno" aria-labelledby="tab-ritorno" class="passes" hidden>
           <article class="pass">
@@ -757,7 +767,7 @@ p { margin: 0; }
               <p class="pass-top"><span>Ritorno · 1 di 2</span><span>25 ago</span></p>
               <div class="pass-route">
                 <div><b>OKA</b><span>Okinawa</span><time>19:55</time></div>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>
+                <div class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg><span>1 h 35 min</span></div>
                 <div><b>TPE</b><span>Taipei</span><time>20:30</time></div>
               </div>
             </div>
@@ -769,12 +779,13 @@ p { margin: 0; }
               <p class="pass-top"><span>Ritorno · 2 di 2</span><span>25 ago</span></p>
               <div class="pass-route">
                 <div><b>TPE</b><span>Taipei</span><time>23:15</time></div>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>
+                <div class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg><span>14 h 35 min</span></div>
                 <div><b>MXP</b><span>Milano</span><time>07:50 <sup>+1</sup></time></div>
               </div>
             </div>
             <div class="pass-stub"><span class="brush">搭乗券</span></div>
           </article>
+          <p class="trip-total">Da Okinawa a Milano, scalo compreso: <b>18 h 55 min</b></p>
         </div>
       </div>
     </div>
@@ -856,7 +867,7 @@ p { margin: 0; }
           <div>
             <p class="eyebrow"><span class="ch-num">壱</span>Tappa 1 di 3</p>
             <h2>Tokyo</h2>
-            <p class="when">Dall'11 agosto · si arriva a Narita alle 12:25</p>
+            <p class="when">11 → 16 agosto · si arriva a Narita alle 12:25</p>
           </div>
           <p class="ch-tate brush" aria-hidden="true">東京</p>
         </header>
@@ -872,6 +883,8 @@ p { margin: 0; }
         <dl class="facts">
           <div><dt>Arrivo</dt><dd>11 agosto, 12:25</dd></div>
           <div><dt>Aeroporto</dt><dd>Narita (NRT)</dd></div>
+          <div><dt>Notti</dt><dd>5</dd></div>
+          <div><dt>Poi</dt><dd>Kyoto, il 16 agosto</dd></div>
         </dl>
         <a class="ch-link" href="#feste">A metà agosto: feste e lanterne a Tokyo ↓</a>
       </div>
@@ -917,7 +930,7 @@ p { margin: 0; }
           <div>
             <p class="eyebrow"><span class="ch-num">弐</span>Tappa 2 di 3</p>
             <h2>Kyoto</h2>
-            <p class="when">Dopo Tokyo, prima del volo per Okinawa del 19 agosto</p>
+            <p class="when">16 → 19 agosto · poi volo da Osaka per Okinawa</p>
           </div>
           <p class="ch-tate brush" aria-hidden="true">京都</p>
         </header>
@@ -931,10 +944,12 @@ p { margin: 0; }
           <button class="ph" data-cap="Kyoto · bagno"><img src="data:image/jpeg;base64,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" width="320" height="218" alt="Bagno dell'hotel di Kyoto"><span>Bagno</span></button>
         </div>
         <dl class="facts">
+          <div><dt>Notti</dt><dd>3</dd></div>
+          <div><dt>Poi</dt><dd>Volo da Osaka, il 19 agosto</dd></div>
           <div><dt>Kyoto → Osaka</dt><dd>JR Special Rapid, circa 30 min</dd></div>
           <div><dt>Costo</dt><dd>¥580, lo shinkansen ¥1.450</dd></div>
         </dl>
-        <p class="ch-note">Le date esatte di Tokyo e Kyoto non sono ancora nel piano: si sa solo che il <b>19 agosto</b> si vola a Okinawa.</p>
+        <p class="ch-note">Il <b>19 agosto</b> si va a Osaka per il volo per Okinawa: dalla stazione di Kyoto il treno più comodo è il JR Special Rapid.</p>
       </div>
     </div>
     <div class="rod bottom" aria-hidden="true"></div>
@@ -967,7 +982,7 @@ p { margin: 0; }
         <dl class="facts">
           <div><dt>Macchine</dt><dd>2 furgoncini da 7 posti, dal 20 al 25 · €35,80</dd></div>
           <div><dt>Go kart</dt><dd>Serve la patente internazionale</dd></div>
-          <div><dt>Arrivo</dt><dd>19 agosto, volo interno</dd></div>
+          <div><dt>Arrivo</dt><dd>19 agosto, volo da Osaka</dd></div>
           <div><dt>Partenza</dt><dd>25 agosto, OKA 19:55</dd></div>
         </dl>
         <p class="ch-note">Dalle foto: biliardo, ping pong e zona BBQ.</p>
@@ -1526,13 +1541,15 @@ tick(); setInterval(tick, 1000);
 const PLANE = '<svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5 9.5 12 13 4h2l-1.6 8H20l2-2.5h1.5L22 12l1.5 2.5H22L20 12h-6.6L15 20h-2l-3.5-8L2 10.5z"/></svg>';
 const DAYS = {
   10: { p: 'fly', fly: 1, t: 'Si parte', x: 'Milano 11:16 → Taipei 06:05 del giorno dopo. Scalo di 1 h 50 min.' },
-  11: { p: 'jp', fly: 1, t: 'Benvenuti a Tokyo', x: 'Taipei 07:55 → Tokyo Narita 12:25. Inizia il Giappone.' },
-  19: { p: 'oki', fly: 1, t: 'Volo interno per Okinawa', x: 'Ancora da prenotare: circa €70 più la valigia.' },
+  11: { p: 'tk', fly: 1, t: 'Benvenuti a Tokyo', x: 'Taipei 07:55 → Tokyo Narita 12:25. Inizia il Giappone.' },
+  16: { p: 'ky', t: 'Da Tokyo a Kyoto', x: 'Si cambia città. Le valigie si possono spedire da un hotel all\'altro.' },
+  19: { p: 'oki', fly: 1, t: 'Volo Osaka → Okinawa', x: 'Da Kyoto a Osaka e volo per Okinawa, circa 2 h 10 min. Ancora da prenotare: circa €70 più la valigia.' },
   20: { p: 'oki', t: 'Okinawa, si guida', x: 'Da oggi fino al 25 ci sono i due furgoncini da 7 posti.' },
   25: { p: 'oki', fly: 1, t: 'Ultimo giorno a Okinawa', x: 'Okinawa 19:55 → Taipei 20:30, scalo di 2 h 45 min, poi Taipei 23:15 → Milano.' },
   26: { p: 'fly', fly: 1, t: 'Di nuovo a casa', x: 'Atterraggio a Milano alle 07:50.' }
 };
-for (let d = 12; d <= 18; d++) DAYS[d] = { p: 'jp', t: 'Tokyo e Kyoto', x: 'Giorni tra Tokyo e Kyoto: la divisione esatta è ancora da fissare. A metà mese a Tokyo ci sono il Fukagawa Hachiman Matsuri e le lanterne sul Sumida (vedi Feste d\'agosto).' };
+for (let d = 12; d <= 15; d++) DAYS[d] = { p: 'tk', t: 'Tokyo', x: 'Giorni a Tokyo. A metà mese ci sono il Fukagawa Hachiman Matsuri e le lanterne sul Sumida (vedi Feste d\'agosto).' };
+for (let d = 17; d <= 18; d++) DAYS[d] = { p: 'ky', t: 'Kyoto', x: 'Giorni a Kyoto. Osaka è a circa 30 minuti di JR Special Rapid.' };
 for (let d = 21; d <= 24; d++) DAYS[d] = { p: 'oki', t: 'Okinawa', x: 'Villa con biliardo, ping pong e BBQ. Furgoncini fino al 25.' };
 (() => {
   const cal = $('#cal'); let h = '';
@@ -1554,10 +1571,10 @@ for (let d = 21; d <= 24; d++) DAYS[d] = { p: 'oki', t: 'Okinawa', x: 'Villa con
 })();
 
 /* ================= flights ================= */
-const PTS = { MXP: [70, 96], TPE: [450, 250], OKA: [512, 206], NRT: [562, 118], KYO: [530, 150] };
+const PTS = { MXP: [70, 96], TPE: [450, 250], OKA: [512, 206], NRT: [562, 118], KYO: [540, 150], OSA: [520, 164] };
 const LEGS = {
   andata: ['M70,96 Q250,-36 450,250', 'M450,250 Q474,150 562,118'],
-  interno: ['M530,150 Q566,190 512,206'],
+  interno: ['M520,164 Q490,190 512,206'],
   ritorno: ['M512,206 Q488,242 450,250', 'M450,250 Q262,330 70,96']
 };
 (() => {
@@ -1575,7 +1592,8 @@ const LEGS = {
   s += lab('TPE', 'Taipei', -16, 2, 'end');
   s += lab('OKA', 'Okinawa', 16, 18);
   s += lab('NRT', 'Tokyo Narita', -10, -32, 'end');
-  s += lab('KYO', 'Kyoto', -14, 6, 'end', true);
+  s += lab('KYO', 'Kyoto', 12, 2, 'start', true);
+  s += lab('OSA', 'Osaka', 12, 14);
   s += '<g id="plane" transform="scale(1.3)"><path d="M-10,0 L5,-1.8 L10,0 L5,1.8Z M-1,-1.2 L-5,-8 L-2,-8 L4,-1.2Z M-1,1.2 L-5,8 L-2,8 L4,1.2Z M-9,-.6 L-11,-4 L-9,-4 L-6.5,-.6Z M-9,.6 L-11,4 L-9,4 L-6.5,.6Z" fill="#f4ecdc"/></g>';
   svg.innerHTML = s;
 })();
@@ -1760,16 +1778,16 @@ const FESTE = [
   { n: 'Kanda Myojin Noryo Matsuri', c: 'Festa tradizionale', d: [7, 9], st: 'before', chip: 'Prima dell\'arrivo', ref: '2026: 7–9 agosto.', t: 'Si balla il Bon Odori, la danza che onora gli spiriti degli antenati, in uno dei santuari più antichi di Tokyo. Spesso con eventi a tema anime, cibo di strada e birra artigianale.' },
   { n: 'Asagaya Tanabata Matsuri', c: 'Festa tradizionale', d: [7, 11], st: 'edge', chip: 'Al limite', ref: '2026: 7–11 agosto. Se nel 2027 finisce l\'11, si becca il giorno dell\'arrivo.', t: 'Le vie commerciali di Asagaya si riempiono di enormi sculture di cartapesta appese, spesso personaggi anime e pop, e di desideri appesi ai rami di bambù.' },
   { n: 'Jingu Gaien Fireworks', c: 'Fuochi', d: [8, 8], st: 'before', chip: 'Prima dell\'arrivo', ref: '2026: 8 agosto, solo con biglietto. La data cambia di anno in anno.', t: '10.000 fuochi d\'artificio insieme a concerti dal vivo.' },
-  { n: 'Fukagawa Hachiman Matsuri', c: 'Festa tradizionale', d: [12, 16], st: 'in', chip: 'Nelle nostre date', ref: '2026: 12–16 agosto, sempre intorno al 15. Nel 2026 c\'era l\'edizione grande, che si fa ogni 3 anni: nel 2027 sarà in versione ridotta.', t: 'Una delle tre grandi feste shintoiste di Edo, una gigantesca festa dell\'acqua: i mikoshi (santuari portatili) sfilano mentre folla e pompieri li inondano d\'acqua per purificarli e rinfrescarli.' },
-  { n: 'Toro Nagashi sul fiume Sumida', c: 'Luce e spiritualità', d: [15, 15], st: 'in', chip: 'Nelle nostre date', ref: '2026: 15 agosto, ad Asakusa. Si può comprare una lanterna e scriverci un messaggio.', t: 'Centinaia di lanterne di carta illuminate da candele galleggiano sul fiume vicino ad Asakusa: un rito buddista dell\'Obon per accompagnare il ricordo dei propri cari.' },
+  { n: 'Fukagawa Hachiman Matsuri', c: 'Festa tradizionale', d: [12, 16], st: 'in', chip: 'Nelle nostre date', ref: '2026: 12–16 agosto, sempre intorno al 15: noi siamo a Tokyo. Nel 2026 c\'era l\'edizione grande, che si fa ogni 3 anni: nel 2027 sarà in versione ridotta.', t: 'Una delle tre grandi feste shintoiste di Edo, una gigantesca festa dell\'acqua: i mikoshi (santuari portatili) sfilano mentre folla e pompieri li inondano d\'acqua per purificarli e rinfrescarli.' },
+  { n: 'Toro Nagashi sul fiume Sumida', c: 'Luce e spiritualità', d: [15, 15], st: 'in', chip: 'Nelle nostre date', ref: '2026: 15 agosto, ad Asakusa: noi siamo a Tokyo. Si può comprare una lanterna e scriverci un messaggio.', t: 'Centinaia di lanterne di carta illuminate da candele galleggiano sul fiume vicino ad Asakusa: un rito buddista dell\'Obon per accompagnare il ricordo dei propri cari.' },
   { n: 'Tokyo Koenji Awa-Odori', c: 'Danza', d: [29, 30], st: 'after', chip: 'Dopo la partenza', ref: '2026: 29–30 agosto. Di solito l\'ultimo weekend di agosto.', t: 'Una delle sfilate di danza folk più grandi del Giappone: oltre 10.000 ballerini e musicisti in abiti tradizionali, al ritmo di taiko, flauti e canti.' },
   { n: 'Harajuku Super Yosakoi', c: 'Danza', d: [29, 30], st: 'after', chip: 'Dopo la partenza', ref: '2026: 29–30 agosto.', t: 'Gara di danza moderna: gruppi da tutto il Giappone ballano agitando i naruko (battitori di legno) in costumi coloratissimi.' }
 ];
 (() => {
   const L = d => ((d - 1) / 31 * 100).toFixed(2) + '%', Wd = (a, b) => ((b - a + 1) / 31 * 100).toFixed(2) + '%';
   $('#tlAxis').innerHTML = [1, 8, 15, 22, 31].map(d => `<span style="left:${((d - .5) / 31 * 100).toFixed(2)}%">${d}</span>`).join('') + '<em>agosto</em>';
-  let h = `<div class="win w-jp" style="left:${L(11)};width:${Wd(11, 18)}" aria-hidden="true"><span>Tokyo·Kyoto</span></div>`;
-  h += `<div class="win w-oki" style="left:${L(19)};width:${Wd(19, 25)}" aria-hidden="true"><span>Okinawa</span></div>`;
+  const P = d => (d - 1) / 31 * 100, band = (cls, a, b, name) => `<div class="win ${cls}" style="left:${P(a).toFixed(2)}%;width:${(P(b) - P(a)).toFixed(2)}%" aria-hidden="true"><span>${name}</span></div>`;
+  let h = band('w-jp', 11, 16.5, 'Tokyo') + band('w-ky', 16.5, 19.5, 'Kyoto') + band('w-oki', 19.5, 26, 'Okinawa');
   FESTE.forEach((e, i) => {
     h += `<div class="ev st-${e.st}" data-st="${e.st}"><button class="ev-head" type="button" aria-expanded="false" aria-controls="evm${i}"><span class="ev-name">${e.n}<small>${e.c}</small></span><span class="ev-chip">${e.chip}</span></button>` +
       `<div class="ev-track" aria-hidden="true"><i style="left:${L(e.d[0])};width:${Wd(e.d[0], e.d[1])}"></i></div>` +
